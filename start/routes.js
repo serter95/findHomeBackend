@@ -17,3 +17,12 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.group(() => {
+  // Coutries, states and cities data
+  Route.get('/getCountries', 'CountryController.getCountries')
+  Route.get('/getStates/:countryId', 'CountryController.getStatesOfCountry')
+  Route.get('/getCities/:stateId', 'CountryController.getCitiesOfState')
+  // Create an user
+  Route.post('/createUser', 'UserController.store')
+}).prefix('api')
